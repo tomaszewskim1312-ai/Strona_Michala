@@ -1,58 +1,231 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="pl" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Strona Michała</title>
+    <title>Michał — AI & Web Developer</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Animacja delikatnego ruchomego tła */
-        @keyframes blob {
-            0% { transform: translate(0px, 0px) scale(1); }
-            33% { transform: translate(30px, -50px) scale(1.1); }
-            66% { transform: translate(-20px, 20px) scale(0.9); }
-            100% { transform: translate(0px, 0px) scale(1); }
+        /* Zaawansowana animacja świetlnych orbow */
+        @keyframes glowFloat {
+            0% { transform: translate(0px, 0px) scale(1); opacity: 0.8; }
+            33% { transform: translate(50px, -60px) scale(1.2); opacity: 1; }
+            66% { transform: translate(-40px, 40px) scale(0.9); opacity: 0.7; }
+            100% { transform: translate(0px, 0px) scale(1); opacity: 0.8; }
         }
-        .animate-blob {
-            animation: blob 12s infinite ease-in-out;
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.4; filter: blur(80px); }
+            50% { opacity: 0.8; filter: blur(100px); }
         }
-        .animation-delay-2000 {
-            animation-delay: 2s;
+        .animate-glow-1 {
+            animation: glowFloat 10s infinite ease-in-out;
         }
-        .animation-delay-4000 {
-            animation-delay: 4s;
+        .animate-glow-2 {
+            animation: glowFloat 14s infinite ease-in-out -4s;
+        }
+        .animate-glow-3 {
+            animation: glowFloat 12s infinite ease-in-out -7s;
+        }
+        .glow-pulse {
+            animation: pulseGlow 6s infinite ease-in-out;
         }
     </style>
 </head>
-<body class="bg-slate-900 text-white min-h-screen relative overflow-x-hidden flex flex-col justify-between">
+<body class="bg-slate-950 text-slate-100 min-h-screen relative overflow-x-hidden font-sans">
 
-    <!-- RUCHOME TŁO (ANIMACJA) -->
-    <div class="fixed inset-0 pointer-events-none z-0">
-        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600/30 rounded-full blur-3xl filter animate-blob"></div>
-        <div class="absolute top-1/3 right-1/4 w-96 h-96 bg-blue-600/30 rounded-full blur-3xl filter animate-blob animation-delay-2000"></div>
-        <div class="absolute bottom-1/4 left-1/3 w-96 h-96 bg-indigo-600/30 rounded-full blur-3xl filter animate-blob animation-delay-4000"></div>
+    <!-- INTENSYWNE RUCHOME TŁO ŚWIETLNE (NEON ORBS) -->
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <div class="absolute -top-20 -left-20 w-[500px] h-[500px] bg-cyan-500/30 rounded-full animate-glow-1 glow-pulse"></div>
+        <div class="absolute top-1/3 -right-20 w-[600px] h-[600px] bg-purple-600/35 rounded-full animate-glow-2 glow-pulse"></div>
+        <div class="absolute -bottom-20 left-1/3 w-[550px] h-[550px] bg-blue-600/30 rounded-full animate-glow-3 glow-pulse"></div>
+        <div class="absolute top-2/3 left-10 w-[400px] h-[400px] bg-emerald-500/20 rounded-full animate-glow-1 glow-pulse"></div>
     </div>
 
-    <!-- TREŚĆ STRONY -->
-    <main class="relative z-10 flex-grow flex items-center justify-center p-6 text-center">
-        <div class="max-w-2xl bg-slate-800/60 backdrop-blur-md p-10 rounded-2xl border border-slate-700/50 shadow-2xl">
-            <h1 class="text-4xl md:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500 mb-4">
-                Cześć, jestem Michał 👋
+    <!-- NAWIGACJA / HEADER -->
+    <header class="sticky top-0 z-50 backdrop-blur-xl bg-slate-950/70 border-b border-slate-800/80">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-xl font-bold tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500">
+                MICHAŁ <span class="text-xs px-2 py-0.5 rounded border border-cyan-500/40 text-cyan-300 ml-1">AI LAB</span>
+            </a>
+            <nav class="hidden md:flex gap-8 text-sm font-medium text-slate-300">
+                <a href="#oferta" class="hover:text-cyan-400 transition">Usługi</a>
+                <a href="#portfolio" class="hover:text-cyan-400 transition">Portfolio</a>
+                <a href="#kontakt" class="hover:text-cyan-400 transition">Kontakt</a>
+            </nav>
+            <a href="#kontakt" class="px-4 py-2 text-xs font-semibold rounded-lg bg-cyan-500/10 text-cyan-300 border border-cyan-500/30 hover:bg-cyan-500/20 transition">
+                Darmowa wycena
+            </a>
+        </div>
+    </header>
+
+    <main class="relative z-10 max-w-6xl mx-auto px-6 space-y-32 py-16">
+
+        <!-- BANNER REKLAMOWY / HERO SECTION -->
+        <section class="text-center space-y-8 pt-8">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900/80 border border-slate-700/60 text-xs font-medium text-cyan-400 shadow-inner">
+                <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+                Nowoczesne technologie & Sztuczna Inteligencja
+            </div>
+
+            <h1 class="text-4xl md:text-7xl font-extrabold tracking-tight leading-tight">
+                Tworzę strony i aplikacje, które <br class="hidden md:block"/>
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-500">
+                    zarabiają i automatyzują biznes
+                </span>
             </h1>
-            <p class="text-lg md:text-xl text-slate-300 mb-8">
-                Tworzę nowoczesne strony i aplikacje internetowe z wykorzystaniem sztucznej inteligencji.
+
+            <p class="max-w-2xl mx-auto text-slate-400 text-lg md:text-xl leading-relaxed">
+                Łączę nowoczesny design, szybkie wdrożenia na żywo oraz dedykowane skrypty i oprogramowanie dostosowane do Twoich potrzeb.
             </p>
-            <div class="flex justify-center gap-4">
-                <a href="#kontakt" class="px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-lg transition-all transform hover:scale-105 shadow-lg shadow-blue-500/30">
-                    Skontaktuj się
+
+            <div class="flex flex-col sm:flex-row justify-center gap-4 pt-4">
+                <a href="#portfolio" class="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold rounded-xl shadow-lg shadow-cyan-500/25 transition transform hover:-translate-y-0.5">
+                    Zobacz nasze realizacje
+                </a>
+                <a href="#kontakt" class="px-8 py-4 bg-slate-900/80 hover:bg-slate-800 text-slate-200 font-semibold rounded-xl border border-slate-700/80 transition">
+                    Porozmawiajmy o projekcie
                 </a>
             </div>
-        </div>
+        </section>
+
+        <!-- PORTFOLIO / GALERIA PROJEKTÓW -->
+        <section id="portfolio" class="space-y-12">
+            <div class="text-center space-y-3">
+                <h2 class="text-3xl md:text-4xl font-bold">Nasze Realizacje & Oprogramowanie</h2>
+                <p class="text-slate-400 max-w-xl mx-auto text-sm md:text-base">
+                    Zobacz przykładowe projekty stron www, systemów zarządzania oraz skryptów, które stworzyliśmy.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Karta Projektu 1 -->
+                <div class="group relative bg-slate-900/60 backdrop-blur-md rounded-2xl border border-slate-800 hover:border-cyan-500/50 transition overflow-hidden flex flex-col">
+                    <div class="h-48 bg-gradient-to-br from-slate-800 to-slate-950 flex items-center justify-center p-6 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-cyan-500/10 opacity-0 group-hover:opacity-100 transition"></div>
+                        <span class="text-4xl">🌐</span>
+                    </div>
+                    <div class="p-6 space-y-3 flex-grow flex flex-col justify-between">
+                        <div>
+                            <span class="text-xs font-semibold text-cyan-400 uppercase tracking-wider">Aplikacja Webowa</span>
+                            <h3 class="text-xl font-bold mt-1 text-white">System LOGI-TRANS</h3>
+                            <p class="text-slate-400 text-sm mt-2">
+                                Panel do zarządzania przeładunkami i rezerwacją kontenerów z powiadomieniami na Telegramie.
+                            </p>
+                        </div>
+                        <div class="pt-4 flex flex-wrap gap-2 text-xs text-slate-400">
+                            <span class="px-2 py-1 rounded bg-slate-800 border border-slate-700">React</span>
+                            <span class="px-2 py-1 rounded bg-slate-800 border border-slate-700">Tailwind</span>
+                            <span class="px-2 py-1 rounded bg-slate-800 border border-slate-700">API</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Karta Projektu 2 -->
+                <div class="group relative bg-slate-900/60 backdrop-blur-md rounded-2xl border border-slate-800 hover:border-purple-500/50 transition overflow-hidden flex flex-col">
+                    <div class="h-48 bg-gradient-to-br from-slate-800 to-slate-950 flex items-center justify-center p-6 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-purple-500/10 opacity-0 group-hover:opacity-100 transition"></div>
+                        <span class="text-4xl">⚙️</span>
+                    </div>
+                    <div class="p-6 space-y-3 flex-grow flex flex-col justify-between">
+                        <div>
+                            <span class="text-xs font-semibold text-purple-400 uppercase tracking-wider">Skrypty & Dedykowany Kod</span>
+                            <h3 class="text-xl font-bold mt-1 text-white">Framework Serwerowy C++ / Lua</h3>
+                            <p class="text-slate-400 text-sm mt-2">
+                                Dedykowane skrypty silnikowe, interfejsy CEF oraz integracja baz danych SQLite dla serwerów gier.
+                            </p>
+                        </div>
+                        <div class="pt-4 flex flex-wrap gap-2 text-xs text-slate-400">
+                            <span class="px-2 py-1 rounded bg-slate-800 border border-slate-700">C++</span>
+                            <span class="px-2 py-1 rounded bg-slate-800 border border-slate-700">Lua</span>
+                            <span class="px-2 py-1 rounded bg-slate-800 border border-slate-700">SQLite</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Karta Projektu 3 -->
+                <div class="group relative bg-slate-900/60 backdrop-blur-md rounded-2xl border border-slate-800 hover:border-blue-500/50 transition overflow-hidden flex flex-col">
+                    <div class="h-48 bg-gradient-to-br from-slate-800 to-slate-950 flex items-center justify-center p-6 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-blue-500/10 opacity-0 group-hover:opacity-100 transition"></div>
+                        <span class="text-4xl">⚡</span>
+                    </div>
+                    <div class="p-6 space-y-3 flex-grow flex flex-col justify-between">
+                        <div>
+                            <span class="text-xs font-semibold text-blue-400 uppercase tracking-wider">Landing Page & Wizytówka</span>
+                            <h3 class="text-xl font-bold mt-1 text-white">Strona Usługowa z AI</h3>
+                            <p class="text-slate-400 text-sm mt-2">
+                                Ultraszybka strona wizytówkowa z animacjami CSS, hostowana na platformie GitHub Pages.
+                            </p>
+                        </div>
+                        <div class="pt-4 flex flex-wrap gap-2 text-xs text-slate-400">
+                            <span class="px-2 py-1 rounded bg-slate-800 border border-slate-700">HTML5</span>
+                            <span class="px-2 py-1 rounded bg-slate-800 border border-slate-700">Tailwind</span>
+                            <span class="px-2 py-1 rounded bg-slate-800 border border-slate-700">CI/CD</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEKACJA USŁUG / OFERTA -->
+        <section id="oferta" class="space-y-12">
+            <div class="text-center space-y-3">
+                <h2 class="text-3xl md:text-4xl font-bold">Czym się zajmujemy?</h2>
+                <p class="text-slate-400 max-w-xl mx-auto text-sm md:text-base">
+                    Kompleksowe wsparcie od pomysłu, przez programowanie, po publikację w internecie.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="p-8 rounded-2xl bg-slate-900/40 border border-slate-800/80 backdrop-blur-md space-y-4 hover:border-slate-700 transition">
+                    <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 text-xl font-bold">01</div>
+                    <h3 class="text-xl font-bold text-white">Strony www & Landing Pages</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Tworzę nowoczesne, wysoce responsywne strony dopasowane pod telefony i komputery. Czysty kod, świetny wygląd i szybkie ładowanie.
+                    </p>
+                </div>
+
+                <div class="p-8 rounded-2xl bg-slate-900/40 border border-slate-800/80 backdrop-blur-md space-y-4 hover:border-slate-700 transition">
+                    <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 text-xl font-bold">02</div>
+                    <h3 class="text-xl font-bold text-white">Programy & Dedykowany Kod</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Automatyzuję procesy i piszę dedykowane oprogramowanie (skrypty Python, C++, integracje baz danych i narzędzi AI).
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FORMULARZ KONTAKTOWY -->
+        <section id="kontakt" class="max-w-2xl mx-auto p-8 md:p-12 bg-slate-900/70 backdrop-blur-xl rounded-3xl border border-slate-800 shadow-2xl space-y-8">
+            <div class="text-center space-y-2">
+                <h2 class="text-3xl font-bold">Napisz do nas</h2>
+                <p class="text-slate-400 text-sm">Chcesz stworzyć własną stronę lub program? Wypełnij formularz!</p>
+            </div>
+
+            <form class="space-y-4" onsubmit="event.preventDefault(); alert('Dziękujemy za wiadomość!');">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Twoje Imię / Firma</label>
+                    <input type="text" placeholder="Jan Kowalski" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-none focus:border-cyan-500 transition"/>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Adres E-mail</label>
+                    <input type="email" placeholder="jan@kontakt.pl" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-none focus:border-cyan-500 transition"/>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Opis projektu</label>
+                    <textarea rows="4" placeholder="Opisz krótko, jakiej strony lub oprogramowania potrzebujesz..." class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-none focus:border-cyan-500 transition"></textarea>
+                </div>
+                <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 font-bold text-slate-950 hover:from-cyan-400 hover:to-blue-500 transition shadow-lg shadow-cyan-500/20">
+                    Wyślij zapytanie
+                </button>
+            </form>
+        </section>
+
     </main>
 
-    <footer class="relative z-10 py-4 text-center text-slate-500 text-sm">
-        © 2026 Strona Michała. Wszelkie prawa zastrzeżone.
+    <!-- FOOTER -->
+    <footer class="relative z-10 border-t border-slate-900 py-8 text-center text-slate-500 text-sm">
+        © 2026 Michał — AI Driven Developer. Wszelkie prawa zastrzeżone.
     </footer>
 
 </body>
