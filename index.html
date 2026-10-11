@@ -1,357 +1,59 @@
-<!doctype html>
-<html lang="pl" class="scroll-smooth">
+<!DOCTYPE html>
+<html lang="pl">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#080d19">
-  <meta name="description" content="Nowoczesne strony internetowe i automatyzacje dla małych i średnich firm z Gdańska i Trójmiasta. Umów bezpłatną konsultację.">
-  <title>Port Studio — Strony internetowe i automatyzacje | Gdańsk</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-          },
-          colors: {
-            ink: '#080d19',
-            accent: '#8173ff',
-            mint: '#84f0c0',
-          },
-          boxShadow: {
-            glow: '0 0 80px rgba(129, 115, 255, .22)',
-          },
-        },
-      },
-    };
-  </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    body { font-family: 'DM Sans', sans-serif; }
-    h1, h2, h3, .font-display { font-family: 'Manrope', sans-serif; }
-    .hero-grid {
-      background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
-      background-size: 56px 56px;
-      mask-image: linear-gradient(to bottom, black, transparent 90%);
-    }
-    .selection-card:has(input:checked) {
-      border-color: #8173ff;
-      background: rgba(129, 115, 255, .09);
-      box-shadow: 0 0 0 1px rgba(129, 115, 255, .35);
-    }
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strona Michała</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Animacja delikatnego ruchomego tła */
+        @keyframes blob {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+        .animate-blob {
+            animation: blob 12s infinite ease-in-out;
+        }
+        .animation-delay-2000 {
+            animation-delay: 2s;
+        }
+        .animation-delay-4000 {
+            animation-delay: 4s;
+        }
+    </style>
 </head>
-<body class="bg-white text-slate-900 antialiased">
-  <header class="absolute inset-x-0 top-0 z-50">
-    <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 sm:px-8 lg:px-10" aria-label="Nawigacja główna">
-      <a href="#start" class="flex items-center gap-3 text-white" aria-label="Port Studio — strona główna">
-        <span class="flex h-10 w-10 items-center justify-center rounded-xl border border-white/15 bg-white/10 text-mint backdrop-blur">
-          <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 18.5 8.4 5.8h2.3l4.1 12.7h-2.5l-.9-3H7.3l-1 3H4Zm4-5h2.8L9.4 9.1 8 13.5ZM16.2 18.5V5.8h2.3v12.7h-2.3Z" fill="currentColor"/><path d="M3 21h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        </span>
-        <span class="font-display text-lg font-extrabold tracking-tight">port<span class="text-mint">.</span>studio</span>
-      </a>
+<body class="bg-slate-900 text-white min-h-screen relative overflow-x-hidden flex flex-col justify-between">
 
-      <button id="menu-toggle" type="button" class="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/15 text-white md:hidden" aria-label="Otwórz menu" aria-expanded="false" aria-controls="mobile-menu">
-        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
-      </button>
-
-      <div class="hidden items-center gap-9 md:flex">
-        <a href="#uslugi" class="text-sm font-medium text-slate-300 transition hover:text-white">Usługi</a>
-        <a href="#o-nas" class="text-sm font-medium text-slate-300 transition hover:text-white">O nas</a>
-        <a href="#kontakt" class="text-sm font-medium text-slate-300 transition hover:text-white">Kontakt</a>
-        <a href="tel:+48500000000" class="rounded-full border border-white/20 px-5 py-2.5 text-sm font-semibold text-white transition hover:border-mint hover:text-mint">Zadzwoń teraz <span aria-hidden="true">↗</span></a>
-      </div>
-    </nav>
-    <div id="mobile-menu" class="mx-5 hidden rounded-2xl border border-white/10 bg-slate-900/95 p-3 shadow-2xl backdrop-blur md:hidden">
-      <a href="#uslugi" class="block rounded-xl px-4 py-3 text-sm text-slate-200 hover:bg-white/5">Usługi</a>
-      <a href="#o-nas" class="block rounded-xl px-4 py-3 text-sm text-slate-200 hover:bg-white/5">O nas</a>
-      <a href="#kontakt" class="block rounded-xl px-4 py-3 text-sm text-slate-200 hover:bg-white/5">Kontakt</a>
-      <a href="tel:+48500000000" class="mt-2 block rounded-xl bg-accent px-4 py-3 text-center text-sm font-semibold text-white">Zadzwoń teraz</a>
+    <!-- RUCHOME TŁO (ANIMACJA) -->
+    <div class="fixed inset-0 pointer-events-none z-0">
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600/30 rounded-full blur-3xl filter animate-blob"></div>
+        <div class="absolute top-1/3 right-1/4 w-96 h-96 bg-blue-600/30 rounded-full blur-3xl filter animate-blob animation-delay-2000"></div>
+        <div class="absolute bottom-1/4 left-1/3 w-96 h-96 bg-indigo-600/30 rounded-full blur-3xl filter animate-blob animation-delay-4000"></div>
     </div>
-  </header>
 
-  <main>
-    <section id="start" class="relative isolate flex min-h-[760px] overflow-hidden bg-ink pt-28 text-white sm:min-h-[800px]">
-      <div class="hero-grid absolute inset-0 -z-10 opacity-70"></div>
-      <div class="absolute -right-40 top-20 -z-10 h-[500px] w-[500px] rounded-full bg-indigo-600/20 blur-[120px]"></div>
-      <div class="absolute -left-40 bottom-0 -z-10 h-[400px] w-[400px] rounded-full bg-emerald-400/10 blur-[110px]"></div>
-      <div class="mx-auto grid w-full max-w-7xl items-center gap-14 px-5 pb-20 pt-12 sm:px-8 lg:grid-cols-[1.1fr_.9fr] lg:px-10 lg:pb-28">
-        <div class="max-w-3xl">
-          <div class="mb-7 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[.04] px-3.5 py-2 text-xs font-medium text-slate-300">
-            <span class="h-2 w-2 rounded-full bg-mint shadow-[0_0_12px_#84f0c0]"></span>
-            Gdańsk · Trójmiasto · cała Polska
-          </div>
-          <h1 class="font-display text-4xl font-extrabold leading-[1.08] tracking-[-.04em] sm:text-5xl md:text-6xl lg:text-[4.15rem]">
-            Nowoczesne strony i automatyzacje <span class="bg-gradient-to-r from-indigo-300 to-mint bg-clip-text text-transparent">dla Twojego biznesu</span>
-          </h1>
-          <p class="mt-6 max-w-xl text-base leading-7 text-slate-300 sm:text-lg sm:leading-8">
-            Projektujemy strony, które zdobywają klientów, i usprawniamy codzienną pracę. Bez zbędnego żargonu — z myślą o Twoim rozwoju.
-          </p>
-          <div class="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <a href="#kontakt" class="inline-flex min-h-14 items-center justify-center gap-2 rounded-full bg-accent px-7 text-sm font-bold text-white shadow-glow transition hover:-translate-y-0.5 hover:bg-indigo-500">
-              Zamów bezpłatną wycenę <span aria-hidden="true">→</span>
-            </a>
-            <a href="#uslugi" class="inline-flex min-h-14 items-center justify-center rounded-full px-7 text-sm font-semibold text-slate-300 transition hover:text-white">Poznaj nasze usługi <span class="ml-2" aria-hidden="true">↓</span></a>
-          </div>
-          <div class="mt-12 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-white/10 pt-6 text-xs font-medium text-slate-400">
-            <span class="flex items-center gap-2"><svg class="h-4 w-4 text-mint" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.704 5.29a1 1 0 0 1 .006 1.414l-7.1 7.16a1 1 0 0 1-1.42.006l-3.9-3.85a1 1 0 1 1 1.406-1.424l3.19 3.15 6.4-6.45a1 1 0 0 1 1.418-.006Z" clip-rule="evenodd"/></svg> Indywidualne podejście</span>
-            <span class="flex items-center gap-2"><svg class="h-4 w-4 text-mint" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.704 5.29a1 1 0 0 1 .006 1.414l-7.1 7.16a1 1 0 0 1-1.42.006l-3.9-3.85a1 1 0 1 1 1.406-1.424l3.19 3.15 6.4-6.45a1 1 0 0 1 1.418-.006Z" clip-rule="evenodd"/></svg> Jasna wycena</span>
-            <span class="flex items-center gap-2"><svg class="h-4 w-4 text-mint" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.704 5.29a1 1 0 0 1 .006 1.414l-7.1 7.16a1 1 0 0 1-1.42.006l-3.9-3.85a1 1 0 1 1 1.406-1.424l3.19 3.15 6.4-6.45a1 1 0 0 1 1.418-.006Z" clip-rule="evenodd"/></svg> Wsparcie po wdrożeniu</span>
-          </div>
+    <!-- TREŚĆ STRONY -->
+    <main class="relative z-10 flex-grow flex items-center justify-center p-6 text-center">
+        <div class="max-w-2xl bg-slate-800/60 backdrop-blur-md p-10 rounded-2xl border border-slate-700/50 shadow-2xl">
+            <h1 class="text-4xl md:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500 mb-4">
+                Cześć, jestem Michał 👋
+            </h1>
+            <p class="text-lg md:text-xl text-slate-300 mb-8">
+                Tworzę nowoczesne strony i aplikacje internetowe z wykorzystaniem sztucznej inteligencji.
+            </p>
+            <div class="flex justify-center gap-4">
+                <a href="#kontakt" class="px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-lg transition-all transform hover:scale-105 shadow-lg shadow-blue-500/30">
+                    Skontaktuj się
+                </a>
+            </div>
         </div>
+    </main>
 
-        <div class="relative mx-auto w-full max-w-lg lg:ml-auto">
-          <div class="absolute -inset-5 rounded-[2rem] bg-gradient-to-br from-indigo-500/20 to-emerald-300/10 blur-2xl"></div>
-          <div class="relative rounded-[1.75rem] border border-white/10 bg-slate-900/75 p-5 shadow-2xl backdrop-blur-xl sm:p-7">
-            <div class="flex items-center justify-between border-b border-white/10 pb-5">
-              <div class="flex gap-1.5" aria-hidden="true"><span class="h-2.5 w-2.5 rounded-full bg-rose-400/80"></span><span class="h-2.5 w-2.5 rounded-full bg-amber-300/80"></span><span class="h-2.5 w-2.5 rounded-full bg-mint/80"></span></div>
-              <span class="text-xs text-slate-500">Twój biznes online</span>
-              <span class="h-7 w-7 rounded-full bg-white/[.06]"></span>
-            </div>
-            <div class="py-7">
-              <div class="mb-6 flex items-end justify-between">
-                <div><p class="text-xs text-slate-400">Wyniki, które rosną</p><p class="mt-1 font-display text-2xl font-bold">Więcej czasu na rozwój</p></div>
-                <span class="rounded-full bg-mint/10 px-2.5 py-1 text-xs font-semibold text-mint">+ automatyzacja</span>
-              </div>
-              <div class="flex h-40 items-end gap-2.5 rounded-2xl border border-white/[.06] bg-white/[.025] px-4 pb-4 pt-6">
-                <div class="h-[28%] flex-1 rounded-t-md bg-indigo-400/35"></div><div class="h-[42%] flex-1 rounded-t-md bg-indigo-400/45"></div><div class="h-[36%] flex-1 rounded-t-md bg-indigo-400/50"></div><div class="h-[57%] flex-1 rounded-t-md bg-indigo-400/60"></div><div class="h-[51%] flex-1 rounded-t-md bg-indigo-400/65"></div><div class="h-[72%] flex-1 rounded-t-md bg-indigo-400/75"></div><div class="h-[67%] flex-1 rounded-t-md bg-indigo-400/80"></div><div class="h-[92%] flex-1 rounded-t-md bg-gradient-to-t from-indigo-500 to-mint"></div>
-              </div>
-              <div class="mt-5 grid grid-cols-2 gap-3">
-                <div class="rounded-xl border border-white/[.07] bg-white/[.035] p-4"><p class="text-xs text-slate-400">Lepsze pierwsze wrażenie</p><p class="mt-2 text-sm font-semibold text-white">Strona gotowa na wzrost</p></div>
-                <div class="rounded-xl border border-white/[.07] bg-white/[.035] p-4"><p class="text-xs text-slate-400">Mniej powtarzalnych zadań</p><p class="mt-2 text-sm font-semibold text-white">Procesy, które działają</p></div>
-              </div>
-            </div>
-            <div class="flex items-center gap-3 rounded-xl border border-mint/15 bg-mint/[.06] p-3.5">
-              <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-mint/10 text-mint"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13 2 4.5 13h6l-.5 9L19.5 11h-6L13 2Z"/></svg></span>
-              <div><p class="text-xs font-semibold text-white">Prosto. Sprawnie. Po Twojemu.</p><p class="mt-0.5 text-[11px] text-slate-400">Technologia dopasowana do Twojej firmy</p></div>
-              <span class="ml-auto text-mint" aria-hidden="true">✦</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="absolute bottom-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-white/15 to-transparent"></div>
-    </section>
+    <footer class="relative z-10 py-4 text-center text-slate-500 text-sm">
+        © 2026 Strona Michała. Wszelkie prawa zastrzeżone.
+    </footer>
 
-    <section id="uslugi" class="bg-white px-5 py-24 sm:px-8 sm:py-28 lg:px-10">
-      <div class="mx-auto max-w-7xl">
-        <div class="mx-auto max-w-2xl text-center">
-          <span class="text-xs font-bold uppercase tracking-[.2em] text-indigo-600">Co możemy dla Ciebie zrobić</span>
-          <h2 class="mt-4 font-display text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">Cyfrowe rozwiązania,<br class="hidden sm:block"> które robią różnicę.</h2>
-          <p class="mt-4 text-base leading-7 text-slate-500">Od pierwszej wizytówki online po sprytnie zautomatyzowane procesy — wybierz wsparcie, którego potrzebuje Twoja firma.</p>
-        </div>
-        <div class="mt-14 grid gap-5 md:grid-cols-3">
-          <article class="group rounded-3xl border border-slate-200/80 bg-white p-7 transition duration-300 hover:-translate-y-1 hover:border-indigo-200 hover:shadow-xl hover:shadow-indigo-950/[.06] sm:p-8">
-            <span class="flex h-14 w-14 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600 transition group-hover:bg-indigo-600 group-hover:text-white">
-              <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path stroke-linecap="round" d="M3 9h18M7 6.5h.01M10 6.5h.01M8 13h3m-3 3h7"/></svg>
-            </span>
-            <h3 class="mt-6 font-display text-xl font-bold text-slate-900">Strony wizytówkowe</h3>
-            <p class="mt-3 text-sm leading-6 text-slate-500">Szybkie, nowoczesne strony, które pokazują, co w Twojej firmie najlepsze — i zamieniają odwiedzających w klientów.</p>
-            <a href="#kontakt" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-indigo-600 transition group-hover:gap-3">Dowiedz się więcej <span aria-hidden="true">→</span></a>
-          </article>
-          <article class="group rounded-3xl border border-slate-200/80 bg-white p-7 transition duration-300 hover:-translate-y-1 hover:border-indigo-200 hover:shadow-xl hover:shadow-indigo-950/[.06] sm:p-8">
-            <span class="flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600 transition group-hover:bg-emerald-500 group-hover:text-white">
-              <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path stroke-linecap="round" d="M8 7h8m-8 4h2m4 0h2m-8 4h2m4 0h2m-6 4v-1"/></svg>
-            </span>
-            <h3 class="mt-6 font-display text-xl font-bold text-slate-900">Kalkulatory i formularze</h3>
-            <p class="mt-3 text-sm leading-6 text-slate-500">Interaktywne narzędzia, dzięki którym klienci szybciej dostaną odpowiedź, a Ty zbierzesz konkretne zapytania.</p>
-            <a href="#kontakt" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-indigo-600 transition group-hover:gap-3">Dowiedz się więcej <span aria-hidden="true">→</span></a>
-          </article>
-          <article class="group rounded-3xl border border-slate-200/80 bg-white p-7 transition duration-300 hover:-translate-y-1 hover:border-indigo-200 hover:shadow-xl hover:shadow-indigo-950/[.06] sm:p-8">
-            <span class="flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-50 text-amber-600 transition group-hover:bg-amber-400 group-hover:text-white">
-              <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v3m0 12v3m9-9h-3M6 12H3m15.36-6.36-2.12 2.12M7.76 16.24l-2.12 2.12m12.72 0-2.12-2.12M7.76 7.76 5.64 5.64"/><circle cx="12" cy="12" r="4"/></svg>
-            </span>
-            <h3 class="mt-6 font-display text-xl font-bold text-slate-900">Automatyzacja procesów</h3>
-            <p class="mt-3 text-sm leading-6 text-slate-500">Połącz aplikacje i ogranicz ręczną pracę. Niech powtarzalne zadania dzieją się same — bez pomyłek i opóźnień.</p>
-            <a href="#kontakt" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-indigo-600 transition group-hover:gap-3">Dowiedz się więcej <span aria-hidden="true">→</span></a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="o-nas" class="relative overflow-hidden bg-slate-50 px-5 py-20 sm:px-8 sm:py-24 lg:px-10">
-      <div class="absolute -right-20 top-0 h-72 w-72 rounded-full bg-indigo-100/70 blur-3xl"></div>
-      <div class="relative mx-auto grid max-w-7xl gap-12 lg:grid-cols-[.9fr_1.1fr] lg:items-center">
-        <div>
-          <span class="text-xs font-bold uppercase tracking-[.2em] text-indigo-600">O nas</span>
-          <h2 class="mt-4 font-display text-3xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-4xl">Technologia powinna ułatwiać. Nie komplikować.</h2>
-        </div>
-        <div>
-          <p class="text-base leading-7 text-slate-600">Jesteśmy lokalnym partnerem dla firm, które chcą działać sprawniej w internecie. Łączymy dobry design z praktycznymi rozwiązaniami — rozmawiamy zrozumiałym językiem, pilnujemy terminów i tworzymy rzeczy, które naprawdę pomagają w codziennej pracy.</p>
-          <div class="mt-7 grid gap-4 sm:grid-cols-3">
-            <div class="rounded-2xl border border-slate-200 bg-white p-4"><p class="font-display text-lg font-extrabold text-slate-900">Po ludzku</p><p class="mt-1 text-xs leading-5 text-slate-500">Jasna komunikacja na każdym etapie</p></div>
-            <div class="rounded-2xl border border-slate-200 bg-white p-4"><p class="font-display text-lg font-extrabold text-slate-900">Na miarę</p><p class="mt-1 text-xs leading-5 text-slate-500">Rozwiązania dopasowane do Twoich celów</p></div>
-            <div class="rounded-2xl border border-slate-200 bg-white p-4"><p class="font-display text-lg font-extrabold text-slate-900">Lokalnie</p><p class="mt-1 text-xs leading-5 text-slate-500">Jesteśmy w Gdańsku i znamy Trójmiasto</p></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="wycena" class="bg-ink px-5 py-24 text-white sm:px-8 sm:py-28 lg:px-10">
-      <div class="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[.85fr_1.15fr] lg:items-center">
-        <div>
-          <span class="text-xs font-bold uppercase tracking-[.2em] text-mint">Kalkulator szybkiej wyceny</span>
-          <h2 class="mt-4 font-display text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl">Sprawdź, od czego możemy zacząć.</h2>
-          <p class="mt-4 max-w-md text-sm leading-6 text-slate-400">Wybierz typ projektu i poznaj orientacyjny budżet oraz czas realizacji. To dobry punkt wyjścia do bezpłatnej rozmowy.</p>
-          <p class="mt-5 flex items-start gap-2 text-xs leading-5 text-slate-500"><svg class="mt-0.5 h-4 w-4 shrink-0 text-mint" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M18 10A8 8 0 1 1 2 10a8 8 0 0 1 16 0ZM9 9a1 1 0 0 1 2 0v5a1 1 0 1 1-2 0V9Zm1-4a1.25 1.25 0 1 0 0 2.5A1.25 1.25 0 0 0 10 5Z" clip-rule="evenodd"/></svg>Kwoty są orientacyjne. Ostateczna wycena zależy od zakresu i ustaleń.</p>
-        </div>
-        <div class="rounded-3xl border border-white/10 bg-white/[.04] p-5 sm:p-8">
-          <fieldset>
-            <legend class="mb-4 text-sm font-semibold text-slate-200">Co chcesz stworzyć?</legend>
-            <div class="grid gap-3">
-              <label class="selection-card flex cursor-pointer items-center gap-4 rounded-2xl border border-white/10 p-4 transition hover:border-white/25">
-                <input class="sr-only" type="radio" name="project-type" value="landing" checked>
-                <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-indigo-500/15 text-indigo-300"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 14h4m-4 3h7"/></svg></span>
-                <span class="min-w-0 flex-1"><span class="block text-sm font-semibold text-white">Strona Landing Page</span><span class="mt-1 block text-xs text-slate-400">Jedna strona, jeden konkretny cel</span></span>
-                <span class="hidden text-xs text-slate-400 sm:block">od 2 500 zł</span>
-              </label>
-              <label class="selection-card flex cursor-pointer items-center gap-4 rounded-2xl border border-white/10 p-4 transition hover:border-white/25">
-                <input class="sr-only" type="radio" name="project-type" value="form">
-                <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-emerald-500/15 text-emerald-300"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path stroke-linecap="round" d="M8 8h8m-8 4h3m-3 4h6"/></svg></span>
-                <span class="min-w-0 flex-1"><span class="block text-sm font-semibold text-white">Strona z formularzem</span><span class="mt-1 block text-xs text-slate-400">Wizytówka i wygodny kontakt z klientem</span></span>
-                <span class="hidden text-xs text-slate-400 sm:block">od 4 500 zł</span>
-              </label>
-              <label class="selection-card flex cursor-pointer items-center gap-4 rounded-2xl border border-white/10 p-4 transition hover:border-white/25">
-                <input class="sr-only" type="radio" name="project-type" value="system">
-                <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-amber-500/15 text-amber-300"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v3m0 12v3m9-9h-3M6 12H3m15.36-6.36-2.12 2.12M7.76 16.24l-2.12 2.12m12.72 0-2.12-2.12M7.76 7.76 5.64 5.64"/><circle cx="12" cy="12" r="4"/></svg></span>
-                <span class="min-w-0 flex-1"><span class="block text-sm font-semibold text-white">Dedykowany system</span><span class="mt-1 block text-xs text-slate-400">Funkcje i automatyzacje szyte na miarę</span></span>
-                <span class="hidden text-xs text-slate-400 sm:block">od 8 000 zł</span>
-              </label>
-            </div>
-          </fieldset>
-          <div class="mt-6 flex flex-col gap-5 border-t border-white/10 pt-6 sm:flex-row sm:items-end sm:justify-between">
-            <div aria-live="polite" aria-atomic="true">
-              <p class="text-xs font-medium text-slate-400">Szacowany budżet</p>
-              <p id="estimate-price" class="mt-1 font-display text-3xl font-extrabold tracking-tight text-white">2 500–4 000 zł</p>
-              <p id="estimate-time" class="mt-1 text-xs text-slate-400">Czas realizacji: ok. 1–2 tygodnie</p>
-            </div>
-            <a href="#kontakt" class="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-mint px-6 text-sm font-bold text-slate-950 transition hover:-translate-y-0.5 hover:bg-emerald-300">Zapytaj o projekt <span aria-hidden="true">→</span></a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="kontakt" class="bg-white px-5 py-24 sm:px-8 sm:py-28 lg:px-10">
-      <div class="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[.8fr_1.2fr]">
-        <div>
-          <span class="text-xs font-bold uppercase tracking-[.2em] text-indigo-600">Porozmawiajmy</span>
-          <h2 class="mt-4 font-display text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">Masz pomysł?<br>Chętnie go poznamy.</h2>
-          <p class="mt-5 max-w-md text-sm leading-6 text-slate-500">Opowiedz nam w kilku zdaniach, czego potrzebujesz. Wrócimy z konkretnymi pytaniami i bezpłatną, niezobowiązującą wyceną.</p>
-          <div class="mt-9 space-y-5">
-            <a href="mailto:kontakt@portstudio.example" class="flex items-center gap-4 group">
-              <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path stroke-linecap="round" stroke-linejoin="round" d="m4 7 8 6 8-6"/></svg></span>
-              <span><span class="block text-xs text-slate-400">Napisz do nas</span><span class="mt-0.5 block text-sm font-semibold text-slate-800 transition group-hover:text-indigo-600">kontakt@portstudio.example</span></span>
-            </a>
-            <a href="tel:+48500000000" class="flex items-center gap-4 group">
-              <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 16.5v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 1.12 3.76 2 2 0 0 1 3.11 1.5h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L7.1 9.38a16 16 0 0 0 6 6l1.26-1.26a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7a2 2 0 0 1 1.74 2.13Z"/></svg></span>
-              <span><span class="block text-xs text-slate-400">Zadzwoń</span><span class="mt-0.5 block text-sm font-semibold text-slate-800 transition group-hover:text-indigo-600">+48 500 000 000</span></span>
-            </a>
-            <div class="flex items-center gap-4">
-              <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-50 text-amber-600"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
-              <span><span class="block text-xs text-slate-400">Znajdziesz nas w</span><span class="mt-0.5 block text-sm font-semibold text-slate-800">Gdańsku, woj. pomorskie</span></span>
-            </div>
-          </div>
-          <p class="mt-7 rounded-xl bg-amber-50 px-4 py-3 text-xs leading-5 text-amber-800">Dane kontaktowe w tej wersji są przykładowe — przed publikacją podmień numer telefonu i adres e-mail na własne.</p>
-        </div>
-
-        <form id="contact-form" class="rounded-3xl border border-slate-200 bg-slate-50 p-5 sm:p-8" novalidate>
-          <div class="grid gap-5 sm:grid-cols-2">
-            <div>
-              <label for="name" class="mb-2 block text-sm font-semibold text-slate-700">Imię</label>
-              <input id="name" name="name" type="text" autocomplete="given-name" required class="min-h-12 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10" placeholder="Jak masz na imię?">
-            </div>
-            <div>
-              <label for="email" class="mb-2 block text-sm font-semibold text-slate-700">E-mail</label>
-              <input id="email" name="email" type="email" autocomplete="email" required class="min-h-12 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10" placeholder="ty@firma.pl">
-            </div>
-            <div class="sm:col-span-2">
-              <label for="phone" class="mb-2 block text-sm font-semibold text-slate-700">Numer telefonu <span class="font-normal text-slate-400">(opcjonalnie)</span></label>
-              <input id="phone" name="phone" type="tel" autocomplete="tel" class="min-h-12 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10" placeholder="+48 123 456 789">
-            </div>
-            <div class="sm:col-span-2">
-              <label for="description" class="mb-2 block text-sm font-semibold text-slate-700">Opisz swój projekt</label>
-              <textarea id="description" name="description" rows="5" required class="w-full resize-y rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10" placeholder="Czego potrzebuje Twoja firma? Opowiedz nam o swoim pomyśle..."></textarea>
-            </div>
-          </div>
-          <div class="mt-5">
-            <button type="submit" class="inline-flex min-h-13 w-full items-center justify-center gap-2 rounded-full bg-indigo-600 px-7 py-3.5 text-sm font-bold text-white transition hover:bg-indigo-700 sm:w-auto">Przygotuj wiadomość <span aria-hidden="true">→</span></button>
-            <p id="form-message" class="mt-3 min-h-5 text-sm text-slate-600" role="status" aria-live="polite">Formularz otworzy Twoją aplikację pocztową — nie wysyła danych na serwer.</p>
-          </div>
-        </form>
-      </div>
-    </section>
-  </main>
-
-  <footer class="bg-ink px-5 py-8 text-white sm:px-8 lg:px-10">
-    <div class="mx-auto flex max-w-7xl flex-col gap-6 border-t border-white/10 pt-7 sm:flex-row sm:items-center sm:justify-between">
-      <a href="#start" class="flex items-center gap-2.5 font-display text-base font-extrabold tracking-tight">port<span class="text-mint">.</span>studio <span class="font-sans text-xs font-normal text-slate-500">© <span id="current-year"></span> Wszelkie prawa zastrzeżone.</span></a>
-      <div class="flex flex-wrap gap-x-6 gap-y-2 text-xs text-slate-400">
-        <a href="#uslugi" class="transition hover:text-white">Usługi</a>
-        <a href="#o-nas" class="transition hover:text-white">O nas</a>
-        <a href="#kontakt" class="transition hover:text-white">Kontakt</a>
-        <a href="mailto:kontakt@portstudio.example" class="transition hover:text-white">E-mail</a>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    const estimates = {
-      landing: { price: '2 500–4 000 zł', time: 'ok. 1–2 tygodnie' },
-      form: { price: '4 500–7 000 zł', time: 'ok. 2–4 tygodnie' },
-      system: { price: 'od 8 000 zł', time: 'ok. 4–8 tygodni' },
-    };
-
-    document.querySelectorAll('input[name="project-type"]').forEach((input) => {
-      input.addEventListener('change', (event) => {
-        const estimate = estimates[event.currentTarget.value];
-        document.getElementById('estimate-price').textContent = estimate.price;
-        document.getElementById('estimate-time').textContent = `Czas realizacji: ${estimate.time}`;
-      });
-    });
-
-    const menuToggle = document.getElementById('menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-    menuToggle.addEventListener('click', () => {
-      const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-      menuToggle.setAttribute('aria-expanded', String(!isExpanded));
-      menuToggle.setAttribute('aria-label', isExpanded ? 'Otwórz menu' : 'Zamknij menu');
-      mobileMenu.classList.toggle('hidden', isExpanded);
-    });
-    mobileMenu.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
-        menuToggle.setAttribute('aria-expanded', 'false');
-        menuToggle.setAttribute('aria-label', 'Otwórz menu');
-      });
-    });
-
-    document.getElementById('contact-form').addEventListener('submit', (event) => {
-      event.preventDefault();
-      const form = event.currentTarget;
-      const message = document.getElementById('form-message');
-      if (!form.reportValidity()) {
-        message.textContent = 'Uzupełnij wymagane pola poprawnymi danymi.';
-        message.className = 'mt-3 min-h-5 text-sm text-rose-600';
-        return;
-      }
-
-      const data = new FormData(form);
-      const subject = encodeURIComponent(`Zapytanie o projekt od ${data.get('name')}`);
-      const body = encodeURIComponent(
-        `Imię: ${data.get('name')}\nE-mail: ${data.get('email')}\nTelefon: ${data.get('phone') || 'Nie podano'}\n\nOpis projektu:\n${data.get('description')}`
-      );
-      message.textContent = 'Otwieramy aplikację pocztową z przygotowaną wiadomością. Jeśli nic się nie stało, napisz na kontakt@portstudio.example.';
-      message.className = 'mt-3 min-h-5 text-sm text-emerald-700';
-      window.location.href = `mailto:kontakt@portstudio.example?subject=${subject}&body=${body}`;
-    });
-
-    document.getElementById('current-year').textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
